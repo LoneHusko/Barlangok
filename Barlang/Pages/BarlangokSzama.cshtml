@@ -1,0 +1,27 @@
+@page
+@model Barlang.Pages.BarlangokSzama
+
+@{
+    ViewData["Title"] = "Barlangok összesítése";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Barlangok összesítése</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Település</th>
+        <th>Barlangok száma</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.BarlangokTelepulesenként)
+    {
+        <tr>
+            <td>@item.Telepules</td>
+            <td>@item.Darab</td>
+        </tr>
+    }
+    </tbody>
+</table>
