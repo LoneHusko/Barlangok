@@ -1,14 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Barlang.Data;
+using Barlang.Models;
 
-namespace Barlang.Pages;
+namespace Barlang.Pages.Barlangok
+{
+    public class IndexModel : PageModel
+    {
+        private readonly Barlang.Data.BarlangDbContext _context;
 
-public class IndexModel : PageModel {
-    private readonly ILogger<IndexModel> _logger;
+        public IndexModel(Barlang.Data.BarlangDbContext context)
+        {
+            _context = context;
+        }
 
-    public IndexModel(ILogger<IndexModel> logger) {
-        _logger = logger;
+        public IList<Models.Barlang> Barlang { get;set; } = default!;
+
+        public async Task OnGetAsync()
+        {
+            Barlang = await _context.Barlang.ToListAsync();
+        }
     }
-
-    public void OnGet() { }
 }
